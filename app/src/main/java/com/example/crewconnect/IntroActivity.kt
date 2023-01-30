@@ -1,4 +1,5 @@
 package com.example.crewconnect
+import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +16,9 @@ class IntroActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+        binding!!.btnSignup.setOnClickListener{
+            startActivity(Intent(this,SignUpActivity::class.java))
+        }
 
     }
 }
