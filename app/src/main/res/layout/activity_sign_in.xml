@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".signup">
+    tools:context=".SignInActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_signin_activity"
         android:layout_width="match_parent"
@@ -15,6 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="SIGN IN"
+            android:gravity="center"
             android:textColor="@color/logo_blue"
             android:textSize="30dp"
             android:textStyle="bold"
