@@ -1,11 +1,9 @@
 package com.example.crewconnect
-
-import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
-import android.renderscript.ScriptGroup
-import android.view.Window
+import android.os.Handler
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.crewconnect.databinding.ActivityFrontPageBinding
 
 class FrontPage : AppCompatActivity() {
@@ -18,8 +16,13 @@ class FrontPage : AppCompatActivity() {
 
 
         window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        val typeFace: Typeface = Typeface.createFromAsset(assets,"Prototype.otf")
-        binding?.tvAppName?.typeface=typeFace
+//        val typeFace: Typeface = Typeface.createFromAsset(assets,"Prototype.ttf")
+//        binding?.tvAppName?.typeface=typeFace
+
+       Handler().postDelayed({
+           startActivity(Intent(this,IntroActivity::class.java))
+
+       },2500)
     }
 
 
