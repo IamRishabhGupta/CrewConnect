@@ -43,7 +43,7 @@ open class BaseActivity : AppCompatActivity() {
         this.doubleBackToExitPressedOnce=true
         Toast.makeText(this, "press again to exit", Toast.LENGTH_SHORT).show()
 
-        Handler().postDelayed({doubleBackToExitPressedOnce=false},2000)
+        Handler().postDelayed({ doubleBackToExitPressedOnce=false},2000)
     }
 
     fun showErrorSnackBar(message:String){

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "577694096067",
+    "project_id": "crewconnect-3945e",
+    "storage_bucket": "crewconnect-3945e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577694096067:android:6cd19681a9da4c89b62076",
+        "android_client_info": {
+          "package_name": "com.example.crewconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577694096067-hkuvhapa080ujggl06futn2tbtutg30k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA24HJGK8vpAphyJgFUXvGxXo_Hm2KQBfM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577694096067-hkuvhapa080ujggl06futn2tbtutg30k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
