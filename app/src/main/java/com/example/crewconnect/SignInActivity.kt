@@ -1,12 +1,18 @@
 package com.example.crewconnect
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.crewconnect.databinding.ActivitySignInBinding
+import com.google.firebase.auth.FirebaseAuth
 
-class SignInActivity : AppCompatActivity() {
+class SignInActivity : BaseActivity() {
     private var binding: ActivitySignInBinding?=null
+    private lateinit var auth:FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivitySignInBinding.inflate(layoutInflater)
@@ -17,6 +23,11 @@ class SignInActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
 
+        auth = FirebaseAuth.getInstance()
+
+        binding?.btnSignin?.setOnClickListener {
+            signInRegisteredUser()
+        }
     }
 
     private fun setupActionBar() {
@@ -30,6 +41,50 @@ class SignInActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+    }
+
+    private fun signInRegisteredUser(){
+        val email:String=binding!!.etEmail!!.text!!.toString().trim{it <= ' '}
+        val password:String=binding!!.etPassowrd!!.text!!.toString().trim{it <= ' '}
+
+        if(validateForm(email, password)){
+            showProgressDialog("please wait...")
+
+            auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    hideProgressDialog()
+                    if (task.isSuccessful) {
+                        Toast.makeText(baseContext, "Authentication success.",
+                            Toast.LENGTH_SHORT).show()
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("Sign in", "createUserWithEmail:failure", task.exception)
+                        Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                    }
+                }
+        }
+    }
+
+    private fun validateForm(email:String,password:String):Boolean{
+        return when{
+            TextUtils.isEmpty(email)->{
+                showErrorSnackBar("please enter email")
+                false
+            }
+            TextUtils.isEmpty(password)->{
+                showErrorSnackBar("please enter password")
+                false
+            }else ->{
+                true;
+            }
+        }
+    }
+
+    fun signInSuccess(user:user){
+        hideProgressDialog()
+        startActivity(Intent(this,MainActivity::class.java))
+        finish()
     }
 
 
