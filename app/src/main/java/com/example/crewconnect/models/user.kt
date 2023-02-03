@@ -1,4 +1,4 @@
-package com.example.crewconnect
+package com.example.crewconnect.models
 
 import android.os.Parcel
 import android.os.Parcelable
