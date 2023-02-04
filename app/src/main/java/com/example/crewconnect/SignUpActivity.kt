@@ -6,8 +6,11 @@ import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
 import com.example.crewconnect.databinding.ActivitySignUpBinding
+import com.example.crewconnect.firebase.FirestoreClass
+import com.example.crewconnect.models.user
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : BaseActivity() {
@@ -51,13 +54,8 @@ class SignUpActivity : BaseActivity() {
                     if (task.isSuccessful) {
                         val firebaseUser: FirebaseUser = task.result!!.user!!
                         val registeredEmail = firebaseUser.email!!
-                        Toast.makeText(
-                            this,
-                            "$name you have successfully registered with email id $registeredEmail",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        FirebaseAuth.getInstance().signOut()
-                        finish()
+                       val user= user(firebaseUser.uid ,name,registeredEmail )
+                        FirestoreClass().registerUser(this,user)
                     } else {
                         Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT).show()
                     }
@@ -87,7 +85,7 @@ class SignUpActivity : BaseActivity() {
     fun userRegisteredSuccess(){
         Toast.makeText(
             this,
-            "you have succesfully registered ",
+            "you have successfully registered ",
             Toast.LENGTH_LONG
         ).show()
         hideProgressDialog()

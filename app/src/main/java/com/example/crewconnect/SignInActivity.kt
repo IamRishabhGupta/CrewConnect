@@ -8,12 +8,14 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.crewconnect.databinding.ActivitySignInBinding
+import com.example.crewconnect.models.user
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.auth.User
 
 class SignInActivity : BaseActivity() {
     private var binding: ActivitySignInBinding?=null
     private lateinit var auth:FirebaseAuth
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate( savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding= ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding?.root)
@@ -28,6 +30,11 @@ class SignInActivity : BaseActivity() {
         binding?.btnSignin?.setOnClickListener {
             signInRegisteredUser()
         }
+    }
+
+    fun signInSuccess(user: User)
+    {hideProgressDialog()
+        startActivity(Intent(this,MainActivity::class.java))
     }
 
     private fun setupActionBar() {
@@ -54,8 +61,7 @@ class SignInActivity : BaseActivity() {
                 .addOnCompleteListener(this) { task ->
                     hideProgressDialog()
                     if (task.isSuccessful) {
-                        Toast.makeText(baseContext, "Authentication success.",
-                            Toast.LENGTH_SHORT).show()
+                       startActivity(Intent(this,MainActivity::class.java))
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("Sign in", "createUserWithEmail:failure", task.exception)
@@ -81,7 +87,7 @@ class SignInActivity : BaseActivity() {
         }
     }
 
-    fun signInSuccess(user:user){
+    fun signInSuccess(user: user){
         hideProgressDialog()
         startActivity(Intent(this,MainActivity::class.java))
         finish()
