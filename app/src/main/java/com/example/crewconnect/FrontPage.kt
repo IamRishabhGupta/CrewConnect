@@ -5,6 +5,7 @@ import android.os.Handler
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.crewconnect.databinding.ActivityFrontPageBinding
+import com.example.crewconnect.firebase.FirestoreClass
 
 class FrontPage : AppCompatActivity() {
 
@@ -19,8 +20,24 @@ class FrontPage : AppCompatActivity() {
 //        val typeFace: Typeface = Typeface.createFromAsset(assets,"Prototype.ttf")
 //        binding?.tvAppName?.typeface=typeFace
 
-       Handler().postDelayed({
-           startActivity(Intent(this,IntroActivity::class.java))
+       Handler().postDelayed(
+
+
+
+
+           {
+
+               var currentUserID=FirestoreClass().getCurrentUserId()
+               if(currentUserID.isNotEmpty())
+               {
+                   startActivity(Intent(this,MainActivity::class.java))
+
+               }
+               else
+               {
+                   startActivity(Intent(this,IntroActivity::class.java))
+
+               }
 
        },2500)
     }
