@@ -1,6 +1,8 @@
 package com.example.crewconnect.firebase
 
+import android.app.Activity
 import android.util.Log
+import com.example.crewconnect.MainActivity
 import com.example.crewconnect.SignInActivity
 import com.example.crewconnect.SignUpActivity
 import com.example.crewconnect.models.user
@@ -24,19 +26,41 @@ class FirestoreClass {
         }
     }
 
-    fun signInUser(activity: SignInActivity)
+    fun signInUser(activity:  Activity)
     {
         mFireStore.collection(Constants.USERS)
              .document(getCurrentUserId()).get().addOnSuccessListener {document->
-           val loggedInUser=document.toObject(User::class.java)!!
-            if(loggedInUser!=null)
+           val loggedInUser=document.toObject(user::class.java)!!
+            when(activity)
             {
-                activity.signInSuccess(loggedInUser)
-            }
+                is SignInActivity ->{
+                    activity.signInSuccess(loggedInUser)
+                }
 
+                is MainActivity ->
+                {
+                    activity.updateNavigationUserDetails(loggedInUser)
+                }
+            }
         }.addOnFailureListener{
+
                 e->
-            Log.e("FirestoreSignInuser","error in writing document ")
+                when(activity)
+                {
+                    is MainActivity->
+                    {
+                        activity.hideProgressDialog()
+                    }
+
+                    is SignInActivity->
+                    {
+                        activity.hideProgressDialog()
+                    }
+                }
+
+
+
+                Log.e("FirestoreSignInuser","error in writing document ")
         }
     }
 

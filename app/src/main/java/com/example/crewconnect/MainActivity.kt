@@ -4,12 +4,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import com.bumptech.glide.Glide
 import com.example.crewconnect.databinding.ActivityMainBinding
+import com.example.crewconnect.firebase.FirestoreClass
+import com.example.crewconnect.models.user
+
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.auth.User
 
 class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListener {
     private var binding: ActivityMainBinding? = null
@@ -24,6 +30,8 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
             toggleDrawer()
         }
         binding!!.navView.setNavigationItemSelectedListener(this)
+
+        FirestoreClass().signInUser(this)
 
     }
 
@@ -66,6 +74,16 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
         }
         binding!!.drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    fun updateNavigationUserDetails(user: user) {
+        Glide
+            .with(this)
+            .load(user.image)
+            .centerCrop()
+            .placeholder(R.drawable.ic_baseline_person_24)
+            .into(findViewById(R.id.nav_user_image))
+        findViewById<TextView>(R.id.tv_username).text=user.name
     }
 }
 
