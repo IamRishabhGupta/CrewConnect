@@ -3,6 +3,7 @@ package com.example.crewconnect.firebase
 import android.app.Activity
 import android.util.Log
 import com.example.crewconnect.MainActivity
+import com.example.crewconnect.MyProfileActivity
 import com.example.crewconnect.SignInActivity
 import com.example.crewconnect.SignUpActivity
 import com.example.crewconnect.models.user
@@ -26,7 +27,7 @@ class FirestoreClass {
         }
     }
 
-    fun signInUser(activity:  Activity)
+    fun loadUserData(activity:  Activity)
     {
         mFireStore.collection(Constants.USERS)
              .document(getCurrentUserId()).get().addOnSuccessListener {document->
@@ -40,6 +41,9 @@ class FirestoreClass {
                 is MainActivity ->
                 {
                     activity.updateNavigationUserDetails(loggedInUser)
+                }
+                is MyProfileActivity->{
+                    activity.setUserDataInUI(loggedInUser)
                 }
             }
         }.addOnFailureListener{
@@ -75,5 +79,8 @@ class FirestoreClass {
         }
         return currentUserId
     }
+
+
+
 
 }

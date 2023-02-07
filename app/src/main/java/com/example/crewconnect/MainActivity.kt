@@ -31,7 +31,7 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
         }
         binding!!.navView.setNavigationItemSelectedListener(this)
 
-        FirestoreClass().signInUser(this)
+        FirestoreClass().loadUserData(this)
 
     }
 
@@ -61,7 +61,7 @@ class MainActivity : BaseActivity(),NavigationView.OnNavigationItemSelectedListe
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_my_profile -> {
-                Toast.makeText(this, "good", Toast.LENGTH_LONG).show()
+                startActivity(Intent(this,MyProfileActivity::class.java))
             }
 
             R.id.nav_sign_out -> {

@@ -18,9 +18,14 @@
         android:theme="@style/Theme.CrewConnect"
         tools:targetApi="31">
         <activity
+            android:name=".MyProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"/>
+        <activity
             android:name=".SignInActivity"
             android:exported="false"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".SignUpActivity"
             android:exported="false"

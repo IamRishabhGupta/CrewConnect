@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MyProfileActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_profile_activity"
+        android:layout_width="match_parent"
+        android:background="@color/logo_blue"
+        android:layout_height="?attr/actionBarSize">
+        <TextView
+            android:id="@+id/tv_toolbar_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="My Profile"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="8dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp"
+            >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/nav_profile_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="2dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_person_24"
+                />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_name_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="40dp"
+                >
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_name_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="name"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_email_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                >
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_email_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="email"
+                    android:focusable="false"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_mobile_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/et_mobile_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="mobile"
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_update_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:text="UPDATE"
+                android:textColor="@color/white"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@drawable/shape_button_rounded"
+                />
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
